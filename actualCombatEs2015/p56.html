@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn(){
+        //     var args = [].slice.call(arguments)
+        //     console.log(args)
+        //     console.log(args.filter(function(i){
+        //         return i % 2 == 0
+        //     }))
+        // }
+
+        // fn(1,2,3,4,5)
+
+
+        //     "use strict";
+
+        // function fn() {
+        //     var args = [].slice.call(arguments);
+        //     console.log(args);
+        //     console.log(args.filter(function (i) {
+        //         return i % 2 == 0;
+        //     }));
+        // }
+
+        // fn(1, 2, 3, 4, 5);
+
+        // function fn(foo,...rest){
+        //     console.log(`foo:${foo}`)
+        //     console.log(`Rest Arguments:${rest.join(',')}`)
+        // }
+        // fn(1,2,3,4,5)
+
+        // 'use strict';
+
+        // function fn(foo) {
+        //     console.log('foo:' + foo);
+
+        //     for (var _len = arguments.length, rest = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        //         rest[_key - 1] = arguments[_key];
+        //     }
+
+        //     console.log('Rest Arguments:' + rest.join(','));
+        // }
+        // fn(1, 2, 3, 4, 5);
+
+        // function merge(targe = {},...objs){
+        //     for(const obj of objs){
+        //         const keys = Object.keys(obj)
+        //         for(const key of kesys){
+        //             targe[key]=obj[key]
+        //         }
+        //     }
+        //     return targe
+        // }
+
+        // console.log(merge({a:1},{b:2},{c:3}))
+
+        "use strict";
+
+        function merge() {
+            var targe = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+            for (var _len = arguments.length, objs = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                objs[_key - 1] = arguments[_key];
+            }
+
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = objs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next())
+                        .done); _iteratorNormalCompletion = true) {
+                    var obj = _step.value;
+
+                    var keys = Object.keys(obj);
+                    var _iteratorNormalCompletion2 = true;
+                    var _didIteratorError2 = false;
+                    var _iteratorError2 = undefined;
+
+                    try {
+                        for (var _iterator2 = keys[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 =
+                                _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                            var key = _step2.value;
+
+                            targe[key] = obj[key];
+                        }
+                    } catch (err) {
+                        _didIteratorError2 = true;
+                        _iteratorError2 = err;
+                    } finally {
+                        try {
+                            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                _iterator2.return();
+                            }
+                        } finally {
+                            if (_didIteratorError2) {
+                                throw _iteratorError2;
+                            }
+                        }
+                    }
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return targe;
+        }
+
+        console.log(merge({
+            a: 1
+        }, {
+            b: 2
+        }, {
+            c: 3
+        }));
+    </script>
+</body>
+
+</html>

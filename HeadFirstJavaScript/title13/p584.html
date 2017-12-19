@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Dog(name,breed,weight){
+        this.name = name;
+        this.breed = weight;
+        this.weight = weight;
+    }
+    Dog.prototype.sitting = false;
+    Dog.prototype.sit=function(){
+        if(this.sitting){
+            console.log(this.name+" is already sitting");
+        }else{
+            this.sitting = true;
+            console.log(this.name + " is now stiting");
+        }
+    };
+
+    var barnaby = new Dog("Barnaby","Barnaby2",33);
+    var spot = new Dog("spot","spot2",33);
+    barnaby.sit();
+    barnaby.sit();
+
+    spot.sit();
+    spot.sit();
+    
+    </script>
+</body>
+</html>

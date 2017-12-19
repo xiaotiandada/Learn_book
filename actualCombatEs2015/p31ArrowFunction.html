@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // Syntax : arg => statement
+
+        // const fn = foo => `${foo} world`
+        // means return `foo + 'world'`
+
+
+        // "use strict";
+
+        // var fn = function fn(foo) {
+        //     return foo + " world";
+        // };
+
+
+        // let array = ['a','bc','def','ghij']
+        // array = array.filter(item => item.length>=2)
+
+
+        // 'use strict';
+
+        // var array = ['a', 'bc', 'def', 'ghij'];
+        // array = array.filter(function (item) {
+        //     return item.length >= 2;
+        // });
+
+        // console.log(array);
+
+
+        // const fn = (foo,bar) => foo + bar
+
+        // "use strict";
+
+        // var fn = function fn(foo, bar) {
+        //     return foo + bar;
+        // };
+
+
+        // let array = ['a','bc','def','ghij']
+        // array = array.sort((a,b) => a.length < b.length)
+
+        // 'use strict';
+
+        // var array = ['a', 'bc', 'def', 'ghij'];
+        // array = array.sort(function (a, b) {
+        //     return a.length < b.length;
+        // });
+        // console.log(array);
+
+
+        // 单一参数
+        // foo => {
+        //     return `${foo} world`
+        // }
+
+
+        // "use strict";
+
+        // (function (foo) {
+        //     return foo + " world";
+        // });
+
+        //多行参数
+        // (foo + bar) => {
+        //     return foo + bar
+        // }
+
+
+        // const greet = () => 'Hello world'
+
+        // 'use strict';
+        // var greet = function greet() {
+        //     return 'Hello world';
+        // };
+
+
+
+        // const names = ['Will','Jack','Peter','Steve','John','Hugo','Mke']
+        // const newSet = names
+        //     .map((name,index) => ({
+        //         id:index,
+        //         name: name
+        //     }))
+        //     .filter(man => man.id % 2 == 0)
+        //     .map(man => [man.name])
+        //     .reduce((a,b) => a.concat(b))
+        // console.log(newSet)
+
+
+
+        'use strict';
+
+        var names = ['Will', 'Jack', 'Peter', 'Steve', 'John', 'Hugo', 'Mke'];
+        var newSet = names.map(function (name, index) {
+            return {
+                id: index,
+                name: name
+            };
+        }).filter(function (man) {
+            return man.id % 2 == 0;
+        }).map(function (man) {
+            return [man.name];
+        }).reduce(function (a, b) {
+            return a.concat(b);
+        });
+        console.log(newSet);
+
+        // 将原本的由名字组成数组转换为一个格式为{id，name} 的对象 id则为伟哥名字在原数组中的位置
+        // 删除其中id为奇数的元素 保留id为偶数的元素
+        // 将剩下的元素转换为一个包含当前元素名字的单元数组 方便下一次处理
+        // 不断合并相邻两个数组 最后得到一个数组 便是我们需要得到的目标值
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 输出1-1000 的质数
+    function isYueshu(a){
+        var sum = 0;
+        for(var i =0;i<=a;i++){
+            if( a % i == 0){
+                sum++;
+            }
+        }
+        return sum;
+    }
+
+    function isZhishu(b){
+        if( isYueshu(b) == 2 ){
+            return true;
+        }
+    }
+
+    for(var i = 0;i<=1000;i++){
+        if(isZhishu(i)){
+            console.log(i);
+        }
+    }
+    </script>
+</body>
+</html>

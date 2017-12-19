@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    function validate(phonenumber){
+        if(phonenumber.length > 8|| phonenumber.length < 7){
+            return false;            
+        }
+        for(var i =0;i<phonenumber.length;i++){
+            if(i === 3){
+                if(phonenumber.length === 8 && phonenumber.charAt(i)!== "-"){
+                    return false;
+                }
+            }else if(phonenumber.length === 7&& isNaN(phonenumber.charAt(i))){
+                return false;
+            }else if(isNaN(phonenumber.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validate1(phonenumber){
+        if(phonenumber.length > 8 || phonenumber.length < 7){
+            return false;
+        }
+        var first = phonenumber.substring(0,3);
+        var second = phonenumber.substring(phonenumber.length -4);
+        if(phonenumber.length ===8){
+            return (phonenumber.charAt(3) == "-");
+        }
+        return true;
+    }
+
+    function validate2(phonenumber){
+        return phonenumber.match(/^\d{3}-?\d{4}$/);
+    }
+
+    var larry = validate("123-4567");
+    console.log(larry);
+
+    var brad = validate1("123-4567");
+    console.log(brad);
+
+    var amy = validate2("123-4567");
+    console.log(amy);
+    </script>
+</body>
+</html>

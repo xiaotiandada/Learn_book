@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const obj = {
+        //     msg: 'World',
+        //     greet(message = this.msg){
+        //         console.log(`Hello ${message}`)
+        //     }
+        // }
+
+        // obj.greet()
+        // obj.greet('ES2015')
+
+        'use strict';
+        
+        var obj = {
+            msg: 'World',
+            greet: function greet() {
+                var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.msg;
+        
+                console.log('Hello ' + message);
+            }
+        };
+        
+        obj.greet();
+        obj.greet('ES2015');
+    </script>
+</body>
+
+</html>

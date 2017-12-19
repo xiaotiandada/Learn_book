@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var cadiParams = {
+        make : "GM",
+        model : "Cadillac",
+        year : 1995,
+        color : "tan",
+        passengers : 5,
+        convertible : false,
+        mileage : 12892
+    };
+
+    function Car(cadiParams){
+        this.make = cadiParams.make;
+        this.model = cadiParams.model;
+        this.year = cadiParams.year;
+        this.color = cadiParams.color;
+        this.passengers = cadiParams.passengers;
+        this.convertible = cadiParams.convertible;
+        this.mileage = cadiParams.mileage;
+        this.started = false;
+        this.start = function(){
+            this.started = true;
+        };
+        this.stop = function(){
+            this.started = false;
+        };
+        this.started = function(){
+            if(this.started){
+                alert("Zoom zoom!");
+            }else{
+                alert("You need to start the engine first.");
+            }
+        }
+    }
+
+    var cadi = new Car(cadiParams);
+
+    cadi.chrome = true;
+    delete cadi.convertible;
+
+    console.log(cadi instanceof Car);
+    
+    </script>
+</body>
+</html>

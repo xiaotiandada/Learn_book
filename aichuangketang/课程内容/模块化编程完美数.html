@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 输出1-1000 的完美数
+    function isYueshu(a){
+        var sum =0;
+        for(var i = 0;i<a;i++){
+            if(a % i == 0){
+                sum+=i;
+            }
+        }
+        return sum;
+    }
+
+    function isWanmeishu(b){
+        if(isYueshu(b) == b){
+            return true;
+        }
+    }
+
+    function shuChu(c){
+        for(var i =1;i<=c;i++){
+            if(isWanmeishu(i)){
+                console.log(i);
+            }
+        }
+    }
+    shuChu(1000);
+    </script>
+</body>
+</html>

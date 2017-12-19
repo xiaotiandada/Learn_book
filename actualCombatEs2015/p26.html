@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    // Flickr API
+    // JSONP('http://api/flickr.com/services/feeds/photos_public.gne',{
+    //     data : {
+    //         tags : 'cat',
+    //         tagmode : 'any',
+    //         format : 'json'
+    //     },
+    //     callback(data){
+    //         console.log(data)
+    //     }
+    // })
+        
+
+    // const JSONP = (function(){
+    //     const global = window
+
+    //     const defaultOptions = Object.freeze({
+    //         data : {},
+    //         callback : (data) => {}
+    //     })
+
+    //     function sefeEscape(str){
+    //         return encodeURIComponent(str.toString())
+    //     }
+    //     //TODO
+    //       // ....
+    // return (root,opts = defaultOptions) => {
+    //     let url = root.trim().replace(/\?$/,'') + '?'
+
+    //     const keys = Object.keys(opts.data)
+
+    //     for( const key of keys){
+    //         url += `${safeEscape(key)} = ${safeEscape(opts.data[key])}$`
+    //     }
+
+    //     const calbackName = `json${Math.random().toString(32).substr(2)}`
+
+    //     global[calbackName] = function(data){
+    //         delete global[calbackName]
+    //         opts.callback.call(JSONP,data)
+    //     }
+    //     url += `jsoncallback=${callbackName}`
+
+    //     const script = document.createElement('script')
+    //     script.src = url
+    //     document.getElementsByTagName('body')[0].appendChild(script)
+    // }
+    // })()
+
+
+
+    'use strict';
+
+var JSONP = function () {
+    var global = window;
+
+    var defaultOptions = Object.freeze({
+        data: {},
+        callback: function callback(data) {}
+    });
+
+    function sefeEscape(str) {
+        return encodeURIComponent(str.toString());
+    }
+    //TODO
+    // ....
+    return function (root) {
+        var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : defaultOptions;
+
+        var url = root.trim().replace(/\?$/, '') + '?';
+
+        var keys = Object.keys(opts.data);
+
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = keys[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var key = _step.value;
+
+                url += safeEscape(key) + ' = ' + safeEscape(opts.data[key]) + '$';
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        var calbackName = 'json' + Math.random().toString(32).substr(2);
+
+        global[calbackName] = function (data) {
+            delete global[calbackName];
+            opts.callback.call(JSONP, data);
+        };
+        url += 'jsoncallback=' + callbackName;
+
+        var script = document.createElement('script');
+        script.src = url;
+        document.getElementsByTagName('body')[0].appendChild(script);
+    };
+}();
+
+  
+    </script>
+</body>
+</html>

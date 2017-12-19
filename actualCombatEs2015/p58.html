@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn(){
+        //     var obj = {foo :'bar'}
+        //     // Function.prototype.apply - Syntax:fn.apply(context,[arg1,arg2])
+        //     fn.apply(obj,[1,2,3])
+
+        //     fn.call(obj,1,2,3)
+        // }
+
+        // 'use strict';
+
+        // function fn() {
+        //     var obj = {
+        //         foo: 'bar'
+        //     };
+        //     fn.apply(obj, [1, 2, 3]);
+
+        //     fn.call(obj, 1, 2, 3);
+        // }
+
+        //     function sum(...numbers){
+        //         return numbers.reduce((a,b) => a+b)
+        //     }
+        //    console.log(   sum.apply(null,[1,2,3]) )
+
+        "use strict";
+
+        function sum() {
+            for (var _len = arguments.length, numbers = Array(_len), _key = 0; _key < _len; _key++) {
+                numbers[_key] = arguments[_key];
+            }
+
+            return numbers.reduce(function (a, b) {
+                return a + b;
+            });
+        }
+        console.log(sum.apply(null, [1, 2, 3]));
+    </script>
+</body>
+
+</html>

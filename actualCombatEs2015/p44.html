@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const fibo = {
+        //     a : 0,
+        //     b : 1,
+        //     [Symbol.iterator](){
+        //         return{
+        //             next() {
+        //                 [fibo.a, fibo.b] = [fibo.a, fibo.a + fibo.b]
+        //                 return {done : false , value: fibo.b}
+        //             }
+        //         }
+        //     }
+        // }    
+
+
+        // for(const n of fibo){
+        //     if(n > 100) break
+        //     process.stdout.write(n.toString()+' ')
+        // }
+
+        'use strict';
+
+        function _defineProperty(obj, key, value) {
+            if (key in obj) {
+                Object.defineProperty(obj, key, {
+                    value: value,
+                    enumerable: true,
+                    configurable: true,
+                    writable: true
+                });
+            } else {
+                obj[key] = value;
+            }
+            return obj;
+        }
+
+        var fibo = _defineProperty({
+            a: 0,
+            b: 1
+        }, Symbol.iterator, function () {
+            return {
+                next: function next() {
+                    var _ref = [fibo.b, fibo.a + fibo.b];
+                    fibo.a = _ref[0];
+                    fibo.b = _ref[1];
+
+                    return {
+                        done: false,
+                        value: fibo.b
+                    };
+                }
+            };
+        });
+
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = fibo[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next())
+                    .done); _iteratorNormalCompletion = true) {
+                var n = _step.value;
+
+                if (n > 100) break;
+                console.log(n.toString() + ' ');
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+
+        //     const foo = 123
+        // const bar = () => foo
+        // const obj = {
+        // foo,
+        // bar
+        // }
+        // console.log(obj)
+
+
+        "use strict";
+
+        var foo = 123;
+        var bar = function bar() {
+            return foo;
+        };
+        var obj = {
+            foo: foo,
+            bar: bar
+        };
+        console.log(obj);
+    </script>
+
+</body>
+
+</html>

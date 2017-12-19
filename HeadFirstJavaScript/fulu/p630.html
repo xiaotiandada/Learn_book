@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="clickme">
+        1
+    </div>
+    <script>
+    // window.onload = function(){
+    //     var div = document.getElementById("clickme");
+    //     div.addEventListener("click",handleClick,false);
+    // }
+    // function handleClick(e){
+    //     var target = e.target;
+    //     alert("You clicked on "+target.id);
+    //     target.removeEventListener("click",handleClick,false);
+    // }
+
+    //ie8
+
+    window.onload = function(){
+        var div = document.getElementById("clickme");
+        if(div.addEventListener){
+            div.addEventListener("click",handleClick,false);
+        }else if(add.attachEvent){
+            div.attachEvent("onclick",handleClick);
+        }
+    };
+
+    function handleClick(e){
+        var evt = e || window.event;
+        var target;
+        if(evt.target){
+            target=evt.target;
+        }else{
+            target=evt.scrElement;
+        }
+        alert("You clicked on "+target.id);
+    }
+    </script>
+</body>
+</html>

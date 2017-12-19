@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 完美数
+
+    for(var i = 1;i<=10000;i++){
+        var sum = 0;
+        // 遍历i数的约数
+        for(var j=1;j<i;j++){
+            if( i % j == 0){
+                sum += j;
+            }
+        }
+        // 完美数的约束的条件
+        if( sum == i){
+            console.log(i + "是完美数");
+        }
+    }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    const noop = () => {}
+    function api(callback = noop){
+        return new Promise ( (resolve,reject) => {
+            const value = 'foobar'
+
+            resolve(value)
+            callback(null,value)
+        })
+    }
+
+    // callback
+    api((err,data) =>{
+        if(err) return console.error(err)
+
+        // ...
+    })
+
+    // Promise
+    api()
+        .then(value => {
+            // ...
+        })
+        .catch(err => console.error(err))
+    
+    </script>
+</body>
+</html>

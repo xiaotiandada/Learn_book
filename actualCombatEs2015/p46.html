@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function fn1(){
+        //     return {
+        //         value1 : 1,
+        //         value2 : 2
+        //     }
+        // }
+
+        // var res1 = fn1()
+        // var value1 = res1.value1
+        // var value2 = res1.value2
+
+        // function fn2(){
+        //     return [1,2]
+        // }
+        // var res2 = fn2()
+        // var value3 = res2[0]
+        // var value4 = res2[1]
+
+
+        "use strict";
+
+        function fn1() {
+            return {
+                value1: 1,
+                value2: 2
+            };
+        }
+
+        var res1 = fn1();
+        var value1 = res1.value1;
+        var value2 = res1.value2;
+
+        function fn2() {
+            return [1, 2];
+        }
+        var res2 = fn2();
+        var value3 = res2[0];
+        var value4 = res2[1];
+
+        console.log(value1, value2, value3, value4);
+    </script>
+</body>
+
+</html>

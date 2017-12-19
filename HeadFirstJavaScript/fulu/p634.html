@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 斐波拉契数列算法
+        // function fibonacci(n){
+        //     if(n === 0) return 1;
+        //     if(n === 1) return 1;
+        //     return (fibonacci(n-1)+fibonacci(n-2));
+        // }
+
+        function fibonacci(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            } else {
+                return (fibonacci(n - 1) + fibonacci(n - 2));
+            }
+        }
+
+        for (var i = 0; i < 10; i++) {
+            console.log("The fibonacci of " + i + " is " + fibonacci(i));
+        }
+
+        console.log(fibonacci(10));
+
+    </script>
+</body>
+
+</html>

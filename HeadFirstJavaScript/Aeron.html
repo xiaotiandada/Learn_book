@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    function validate(phonenumber){
+        if(phonenumber.length !== 8){
+            return false;
+        }
+        for(var i =0;i<phonenumber.length;i++){
+            if(i === 3){
+                if(phonenumber.charAt(i)!== "-"){
+                    return false;
+                }
+            }else if(isNaN(phonenumber.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function validate1(phonenumber){
+        if(phonenumber.length !== 8){
+            return false;
+        }
+        var first = phonenumber.substring(0,3);
+        var second = phonenumber.substring(4);
+        if(phonenumber.charAt(3)!=="-" || isNaN(first) || isNaN(second)){
+            return false;
+        }
+        return true;
+    }
+
+    var larry = validate("123-4567");
+    console.log(larry);
+
+    var brad = validate1("123-4567");
+    console.log(brad);
+    </script>
+</body>
+</html>

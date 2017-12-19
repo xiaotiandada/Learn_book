@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const data = sourceData.items.map(
+        //     ({
+        //         title,link,author,published,media:{m:image}
+        //     }) => ({
+        //         title,link,author,image,published
+        //     })
+        // )
+
+        // console.log(data)
+
+
+        "use strict";
+
+        var data = sourceData.items.map(function (_ref) {
+            var title = _ref.title,
+                link = _ref.link,
+                author = _ref.author,
+                published = _ref.published,
+                image = _ref.media.m;
+            return {
+                title: title,
+                link: link,
+                author: author,
+                image: image,
+                published: published
+            };
+        });
+
+    
+
+        console.log(data);
+    </script>
+</body>
+
+</html>

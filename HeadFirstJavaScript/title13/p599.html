@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Robot(name,year,owner){
+        this.name = name;
+        this.year = year;
+        this.owner = owner;
+    }
+    Robot.prototype.maker = "ObjectsRUs";
+    Robot.prototype.speak = function(){
+        alert("Warning warning!!");
+    };
+    Robot.prototype.makeCoffee = function(){
+        alert("Making coffee!");
+    };
+    Robot.prototype.blinkLights = function(){
+        alert("Blink blink!");
+    }
+    function SpaceRobot(name,year,owner,homePlanet){
+        this.name = name;
+        this.year = year;
+        this.owner = owner;
+        this.homePlanet = homePlanet;
+    }    
+
+    SpaceRobot.prototype = new Robot();
+
+    SpaceRobot.prototype.speak = function(){
+        alert(this.name + " says Sir, If I may venture an  opinion...");
+    };
+    SpaceRobot.prototype.pilot = function(){
+        alert(this.name+" says Thrusters? Are they important?");
+    };
+
+    var c3po = new SpaceRobot("C3PO",1977,"Luck Skywalker","Tatooiner");
+    c3po.speak();
+    c3po.pilot();
+    console.log(c3po.name + " was made by " + c3po.maker);
+
+    var simon = new SpaceRobot("Simon",2009,"Carla Diana","Earth");
+    simon.makeCoffee();
+    simon.blinkLights();
+    simon.speak();
+    </script>
+</body>
+</html>

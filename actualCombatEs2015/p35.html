@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // const a = {
+        //     init(){
+        //         this.bar = () => this.dam
+        //     },
+        //     dam : 'hei',
+        //     foo(){
+        //         return this.dam
+        //     }
+        // }
+
+        // const b = {
+        //     dam : 'ha'
+        // }
+
+        // a.init()
+
+        // console.log(a.foo()); 
+        // console.log(a.foo.bind(b).call(a));
+        // console.log(a.bar.call(b));
+
+        'use strict';
+
+        var a = {
+            init: function init() {
+                var _this = this;
+
+                this.bar = function () {
+                    return _this.dam;
+                };
+            },
+
+            dam: 'hei',
+            foo: function foo() {
+                return this.dam;
+            }
+        };
+
+        var b = {
+            dam: 'ha'
+        };
+
+        a.init();
+
+        console.log(a.foo());
+        console.log(a.foo.bind(b).call(a));
+        console.log(a.bar.call(b));  //无法改变
+    </script>
+</body>
+
+</html>

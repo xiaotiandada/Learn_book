@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    var passengers = [
+        {name : "Jane Dollp",paid : true},
+        {name : "Dr. Evel",paid : true},
+        {name : "Sue Property",paid : false},
+        {name : "John Funcall",paid : true}
+    ];
+    
+    function checkPaid(passengers){
+        for(var i = 0;i<passengers.length;i++){
+            if(!passengers[i].paid){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function checkNoFly(passengers){
+        for(var i = 0;i<passengers.length;i++){
+            if(noNoFlyList(passengers[i].name)){
+                return false;
+            }
+        }
+        return true;
+    }
+    function printPassengers(passengers){
+        for(var i = 0;i<passengers.length;i++){
+            console.log(passengers[i].name);
+            return false;
+        }
+        return true;
+    }
+
+    function checkNoFlyList(passenger){
+        for(var i=0;i<passenger.length;i++){
+            if(passenger[i].name == "Dr. Evel"){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function checkNotPaid(passenger){
+        for(var i=0;i<passenger.length;i++){
+            if(!passenger[i].paid){
+                console.log(passenger[i])
+                return false;
+            }
+        }
+        return true;
+    }
+    checkNoFlyList(passengers);
+    checkNotPaid(passengers);
+
+    </script>
+</body>
+</html>

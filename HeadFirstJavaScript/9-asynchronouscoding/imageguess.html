@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    img{
+        margin:20px;
+    }
+    </style>
+    <script>
+    window.onload = init;
+    function init(){
+        var images = document.getElementsByTagName("img");
+        for(var i = 0; i<images.length;i++){
+            images[i].onmouseover=showAnswer;
+            images[i].onmouseout = reblue;
+        }
+    }
+    function showAnswer(e){
+        var eventObj = e || window.event;
+        var image = eventObj.target;
+        var name = image.id;
+        name = "./img/"+name+".jpg";
+        image.src=name;
+    }
+    function reblue(e){
+        var eventObj = e || window.event;
+        var image = eventObj.target;
+        var name = image.id;
+        name = "./img/"+name+"blur.jpg";
+        image.src=name;
+    }
+    </script>
+</head>
+<body>
+    <img src="./img/zeroblur.jpg" alt="" id="zero">
+    <img src="./img/oneblur.jpg" alt="" id="one">
+    <img src="./img/twoblur.jpg" alt="" id="two">
+    <img src="./img/threeblur.jpg" alt="" id="three">
+    <img src="./img/fourblur.jpg" alt="" id="four">
+    <img src="./img/fiveblur.jpg" alt="" id="five">
+</body>
+</html>

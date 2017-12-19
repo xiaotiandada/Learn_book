@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var amyHome = "555-1212";
+    var phoneNumber = new RegExp(/^\d{3}-?\d{4}$/);
+
+    var result = amyHome.match(phoneNumber);
+
+    console.log(result);
+    </script>
+</body>
+</html>

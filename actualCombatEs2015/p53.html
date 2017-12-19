@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    // Default value
+    function fn1(opt){
+        opt = opt || {}
+        // ...
+    }
+
+    // Rest arguments
+    function fn(foo,bar){
+        var restArgs = [].slice.call(arguments,2)
+        // ...
+    }
+
+    // Methods overload
+    function Person(name){
+        this.name = name
+    }
+
+    Person.prototype.greet = function(){
+        var length = arguments.length
+        if(length== 1) return this._greet.appley(this,arguments)
+
+        console.log("Hey, I'm " + this.name + ".")
+    }
+    Person.prototype._greet = function(name){
+        console.log("Hey "+name+", I'm " + this.name)
+    }
+    
+    </script>
+</body>
+</html>
