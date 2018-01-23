@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .sub{
+        display: block;
+        width: 60%;
+        height: 200px;
+        background: #333;
+        color: #fff;
+        text-align: center;
+        line-height: 200px;
+        text-decoration: none;
+        font-size: 30px;
+    }
+    </style>
+</head>
+<body>
+    <a href="javascript:;" class="sub" id="sub">0</a>
+    <script>
+    window.onload = function(){
+        var sub = document.getElementById('sub')
+        sub.addEventListener('touchstart',submitForm)
+        function submitForm(event){
+            // sub.innerHTML = event.touches.length;
+            // console.log(event.touches.length)
+            // console.log(event.touches[0].pageX)
+            // console.log(event.touches[0].pageY)
+        }
+        sub.addEventListener('gesturechange',changeForm)
+        function changeForm(){
+            console.log(event.rotation)
+            console.log(event.scale)
+        }
+    }
+    
+    </script>
+</body>
+</html>
