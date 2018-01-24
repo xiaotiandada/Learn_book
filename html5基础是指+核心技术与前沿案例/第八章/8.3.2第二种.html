@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三列布局 圣杯布局</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        min-width: 950px;
+    }
+    .left{
+        background: #16a085;
+        width: 350px;
+        margin-left: -100%;
+        position: relative;
+        /* right: 350px; */
+    }
+    .main{
+        background: #1abc9c;
+        width: 100%;
+    }
+    .right{
+        background: #14856d;
+        width: 250px;
+        margin-left: -250px;
+    }
+    .col{
+        float: left;
+        height: 500px;
+        color: #fff;
+        line-height: 500px;
+        font-size: 26px;
+        text-align: center;
+    }
+    .container{
+        /* padding-left: 350px;
+        padding-right: 250px; */
+    }
+    .content{
+        margin: 0 250px 0 350px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main col">
+            <div class="content">
+                <p>leafjlasdjf;lads</p>
+            </div>
+        </div>
+        <div class="left col">
+            <p>leafjlasdjlfkjads</p>
+        </div>
+        <div class="right col">
+            <p>leafjlasdjlf;dsjf;lads</p>
+        </div>
+    </div>
+</body>
+</html>
