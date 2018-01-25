@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    html,body{
+        height: 100%;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+        position: relative;
+
+        perspective: 1500px;
+    }
+    article{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 100px;
+        box-sizing: border-box;
+        transition: all 1s ease-in-out;
+        top: 0;
+
+        backface-visibility: hidden;
+    }
+    #tablet{
+        background: #4ac4aa;
+        /* left: 0; */
+        transform: rotateY(0deg)
+    }
+    #wifi{
+        background: #ea5634;
+        /* left: 100%; */
+        transform: rotateY(180deg)
+    }
+    h1{
+        font-size: 4em;
+        border-bottom: 1px solid rgba(255,255,255,.2);
+        padding-bottom: 30px;
+    }
+    p{
+        color: rgba(255, 255, 255, .8);
+        margin-bottom: 30px;
+    }
+    a{
+        font-size: 1.5em;
+        padding: 5px 50px;
+        border: 1px solid #fff;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #fff;
+    }
+    #table.move{
+        /* left: -100%; */
+        transform: rotateY(-180deg)
+    }
+    #wifi.move{
+        /* left: 0; */
+        transform: rotateY(0deg)
+    }
+    </style>
+</head>
+<body>
+    <article id="tablet">
+        <h1>Comprehensam</h1>
+        <p>Mel homro labores ce maluisset ... aliquam te.</p>
+        <a href="#wifi">Next</a>
+    </article>
+    <article id="wifi">
+        <h1>activated</h1>
+        <p>Emmmmmmmmmmmm...lllllllllllllllllll</p>
+        <a href="#tablet">Next</a>
+    </article>
+    <script src="../../jquery-3.1.1.js"></script>
+    <script>
+    $(function(){
+        $('a').on('click',function(e){
+            e.preventDefault()
+            $('#tablet').toggleClass('move')
+            $('#wifi').toggleClass('move')
+        })
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        #shuttle {
+            width: 200px;
+            height: 300px;
+            border-radius: 10px 10px 0 0;
+            background: #808080;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            margin-left: -50px;
+            margin-top: -77px;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #FF0000;
+        }
+
+        .boxs{
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="shuttle"></div>
+    <div id="box"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <div class="boxs"></div>
+    <script src="../../jquery-3.1.1.js"></script>
+    <script src="../../TweenMax.min.js"></script>
+    <script>
+    TweenMax.to(shuttle,1,
+                    {top:'50%',      // 垂直居中
+                    left: 250,         //到左侧
+                     rotation: 90,      // 旋转90
+                     delay:1,         // 延迟一秒
+                     ease: Back.easeOut,   // 运动曲线
+                     onComplete: completeHandler})  // 运动结束 调用方法
+    function completeHandler(e){
+        TweenMax.to(shuttle,2, 
+        {left:'100%',  // 最右侧
+        scale:.2,       // 缩小
+        opacity:0,   // 透明
+        ease:Back.easeIn})    // 运动曲线
+    }
+    TweenMax.to(box,2,{borderRadius:"50%", repeat:-1})
+
+    $(function(){
+        CSSPlugin.defaultTransformPerspective = 500
+        $('.boxs').each(function(index){
+            TweenMax.to($(this),20,{left:index*130,top:200,rotationY:45+12*index,scale:1.2})
+        })
+    })
+    </script>
+</body>
+
+</html>
