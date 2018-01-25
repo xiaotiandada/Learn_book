@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        background: #d4676a;
+        margin: 50px;
+        font-family: sans-serif;
+    }
+    .box1,.box2{
+        background: #fff;
+        border-radius: 4px;
+        padding: 20px 40px;
+        width: 400px;
+        box-shadow: 5px 7px 1px rgba(0, 0, 0, .1);
+        position: relative;
+        margin: 40px;
+    }
+    .box1 h1,
+    .box2 h1 {
+        color: #d4676a;
+    }
+    .box1 p,
+    .box2 p{
+        color: #666;
+    }
+    .box1::after,
+    .box2::after{
+        content: '';
+        position: absolute;
+        bottom: -40px;
+        width: 0;
+        height: 0;
+        border-width: 20px;
+        border-style: solid;
+        /* border-color: #390 #f30 #ff3; */
+        border-color: #fff transparent transparent transparent;
+        bottom: -40px;
+    }
+    .box2::after{
+        top: 42px;
+        right: 30px;
+        border-width: 10px;
+        border-color: transparent transparent transparent #d4676a;
+    }
+    .box2::before{
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        /* bottom: -40px; */
+        top: 42px;
+        right: 20px;
+        border-width: 10px;
+        border-color: transparent transparent transparent #d4676a;
+    }
+
+    </style>
+</head>
+<body>
+    <article class="box1">
+        <h1>Lorem ipsum</h1>
+        <p>Ne maluisset sententiae qui ... repfasdljflkdjsfl.</p>
+    </article>
+
+    <article class="box2">
+            <h1>Lorem ipsum</h1>
+            <p>Ne maluisset sententiae qui ... repfasdljflkdjsfl.</p>
+        </article>
+</body>
+</html>

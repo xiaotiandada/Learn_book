@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #30B38B;
+        }
+
+        .closes {
+            width: 100px;
+            height: 100px;
+            background: #000;
+        }
+
+        .close {
+            font-size: 0;
+            display: block;
+            padding: 40px 0 0 20px;
+        }
+
+        .close::before,
+        .close::after {
+            content: '';
+            width: 50px;
+            height: 2px;
+            background: #fff;
+            display: block;
+        }
+        .close::before {
+            transform: rotate(45deg);
+        }
+
+        .close::after {
+            transform: translateY(-2px) rotate(-45deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="closes">
+        <span class="close">close</span>
+    </div>
+</body>
+
+</html>
