@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: serif;
+            color: #fff;
+        }
+
+        .description {
+            padding: 100px 20%;
+        }
+
+        h1 {
+            font-size: 100px;
+        }
+
+        p {
+            font-size: 24px;
+        }
+
+        h1,
+        p {
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        #mask {
+            background: url(http://pic35.photophoto.cn/20150514/0005018352749416_b.jpg) no-repeat;
+        }
+
+        #hat {
+            background: url(http://d.hiphotos.baidu.com/zhidao/pic/item/279759ee3d6d55fb2166d92165224f4a20a4dd11.jpg) no-repeat;
+        }
+
+        #movie {
+            background: url(http://f.hiphotos.baidu.com/zhidao/pic/item/902397dda144ad3464639dc8d1a20cf430ad85a4.jpg) no-repeat;
+        }
+
+        #mask,
+        #hat,
+        #movie {
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mask" class="description">
+        <h1>Mask</h1>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+
+    </div>
+    <div id="hat" class="description">
+        <h1>hat</h1>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+
+    </div>
+    <div id="movie" class="description">
+        <h1>movie</h1>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+        <p>Eriam curus erat eros,...</p>
+
+    </div>
+
+    <script src="../../jquery-3.1.1.js"></script>
+    <script>
+        $(function () {
+            var maskTop = $('#mask').offset().top;
+            var hatTop = $('#hat').offset().top;
+            var movieTop = $('#movie').offset().top;
+
+            $(window).scroll(function () {
+                var pos = $(window).scrollTop();
+                $('#mask').css({
+                    "background-position" : "0" + (pos-maskTop)*.5 + "px"
+                })
+                $('#hat').css({
+                    "background-position" : "0" + (pos-hatTop)*.3 + "px"                    
+                })
+                $('#movie').css({
+                    "background-position" : "0" + (pos-movieTop)*.8 + "px"                    
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
