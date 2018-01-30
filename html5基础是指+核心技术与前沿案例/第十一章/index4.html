@@ -15,6 +15,7 @@
         body {
             font-family: serif;
             color: #fff;
+            background: #bdbdbd;
         }
 
         .description {
@@ -53,11 +54,40 @@
             background-attachment: fixed;
             background-size: cover;
         }
+        .description {
+            position: relative;
+        }
+        .description img{
+            position: absolute;
+            z-index: 10;
+        }
+        #mask img{
+            left: 0;
+        }
+        #hat img{
+            right: 0;
+        }
+        #movie img{
+            left: 0;
+        }
+        #mask{
+            padding-left: 45%;
+            padding-right: 15%;
+        }
+        #hat{
+            padding-left: 5%;
+            padding-right: 45%;
+        }
+        #movie{
+            padding-left: 50%;
+            padding-right: 10%;
+        }
     </style>
 </head>
 
 <body>
     <div id="mask" class="description">
+        <img src="http://img0.imgtn.bdimg.com/it/u=3833107751,3343331951&fm=27&gp=0.jpg" alt="">
         <h1>Mask</h1>
         <p>Eriam curus erat eros,...</p>
         <p>Eriam curus erat eros,...</p>
@@ -84,6 +114,7 @@
 
     </div>
     <div id="hat" class="description">
+        <img src="http://p3.gexing.com/G1/M00/B2/89/rBACFFIblpLyG206AAAbQAjrccs496_200x200_3.jpg" alt="">
         <h1>hat</h1>
         <p>Eriam curus erat eros,...</p>
         <p>Eriam curus erat eros,...</p>
@@ -110,6 +141,7 @@
 
     </div>
     <div id="movie" class="description">
+        <img src="http://p2.gexing.com/touxiang/20130412/1213/516789ef21bbd_200x200_3.jpg" alt="">
         <h1>movie</h1>
         <p>Eriam curus erat eros,...</p>
         <p>Eriam curus erat eros,...</p>
@@ -145,14 +177,14 @@
 
             $(window).scroll(function () {
                 var pos = $(window).scrollTop();
-                $('#mask').css({
-                    "background-position" : "0" + (pos-maskTop)*.5 + "px"
+                $('#mask > img').css({
+                    "top" : "0" + (pos-maskTop)*.5 + "px"
                 })
-                $('#hat').css({
-                    "background-position" : "0" + (pos-hatTop)*.3 + "px"                    
+                $('#hat > img').css({
+                    "top" : "0" + (pos-hatTop)*.5 + "px"                    
                 })
-                $('#movie').css({
-                    "background-position" : "0" + (pos-movieTop)*.8 + "px"                    
+                $('#movie > img').css({
+                    "top" : "0" + (pos-movieTop)*.5 + "px"                    
                 })
             })
         })

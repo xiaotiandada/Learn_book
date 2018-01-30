@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        background: url(http://f.hiphotos.baidu.com/image/pic/item/503d269759ee3d6db032f61b48166d224e4ade6e.jpg) no-repeat 50%;
+        background-size: 100% 100%;
+        font-family: sans-serif;
+        color: #fff;
+    }
+    #slogan1,
+    #slogan2,
+    #slogan3{
+        position: relative;
+        height: 500px;
+    }
+    #slogan1{
+        padding-top: 200px;
+        text-align: center;
+
+        opacity: 0;
+        -webkit-transition: all 2s .5s;
+        transition: all 2s .5s;
+    }
+    #slogan1.show{
+        opacity: 1;
+    }
+    #slogan1 h1{
+        font-size: 81px;
+        text-transform: uppercase;
+    }
+    #slogan1 h2{
+        font-size: 32px;
+        font-weight: 100;
+    }
+    #slogan2 {
+        padding-top: 50px;
+        text-align: center;
+    }
+    #slogan2 h1{
+        display: inline-block;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-top: 5px solid #fff;
+        border-bottom: 5px solid #fff;
+
+        opacity: 0;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+
+        -webkit-transition: all 1s;
+        transition: all 1s;
+    }
+    #slogan2 h2{
+        font-size: 26px;
+
+        opacity: 0;
+        -webkit-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transition: all 1s .5s;
+        transition: all 1s .5;
+    }
+    #slogan2 h1.scrolled{
+        opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1)
+    }
+    #slogan2 h2.scrolled{
+        opacity: 1;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+    #slogan3 h1{
+        position: absolute;
+        font-size: 72px;
+        left: 10%;
+        top: 60px;
+
+        opacity: 0;
+        -webkit-transform: translateX(-200px);
+        transform: translateX(-200px);
+        -webkit-transition: all 1s;
+        transition: all 1s;
+    }
+    #slogan3 h2{
+        position: absolute;
+        font-size: 24px;
+        left: 10%;
+        width: 650px;
+        top: 200px;
+
+        opacity: 0;
+        -webkit-transform: translateX(200px);
+        transform: translateX(200px);
+        -webkit-transition: all 1s .25s;
+        transform: all 1s .25s;
+    }
+    #slogan3 img{
+        position: absolute;
+        left: 60%;
+        top: 100px;
+
+        opacity: 0;
+        -webkit-transform: translateX(200px);
+        transform: translateX(200px);
+        -webkit-transition: all 1.5s .5s;
+        transition: all 1.5s .5s;
+    }
+
+    #slogan3 h1.scrolled,
+    #slogan3 h2.scrolled,
+    #slogan3 img.scrolled{
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
+    </style>
+</head>
+<body>
+    <div id="slogan1">
+        <h1>Donec firngila</h1>
+        <h2>Aennean cursus metus edsf sdj in  in felis.</h2>
+    </div>
+    <div id="slogan2">
+        <h1>Donec firngila</h1>
+        <h2>Aennean cursus metus edsf sdj in  in felis.</h2>
+    </div>
+    <div id="slogan3">
+        <h1>Donec firngila</h1>
+        <h2>Aennean cursus metus edsf sdj in  in felis.</h2>
+        <img src="http://p2.gexing.com/touxiang/20130412/1213/516789ef21bbd_200x200_3.jpg" alt="">
+    </div>
+    <script src="../../jquery-3.1.1.js"></script>
+    <script>
+    $(function(){
+        $('#slogan1').addClass('show');
+
+        var slogan2_y = $('#slogan2').offset().top;
+        var slogan3_y = $('#slogan3').offset().top;
+
+        var windowHeight = $(window).height();
+        var buffer = 200;
+
+        $(window).scroll(function(){
+            var pos = $(window).scrollTop();
+            if(pos >slogan2_y - buffer){
+                $('#slogan2 > h1').addClass('scrolled');
+                $('#slogan2 > h2').addClass('scrolled');
+            }
+            if(pos > slogan3_y - buffer){
+                $('#slogan3 > h1').addClass('scrolled');
+                $('#slogan3 > h2').addClass('scrolled');
+                $('#slogan3 > img').addClass('scrolled');
+            }
+            if(pos < slogan2_y - windowHeight + buffer){
+                $('#slogan2 > h1').removeClass('scrolled');
+                $('#slogan2 > h2').removeClass('scrolled');
+            }
+            if(pos < slogan3_y - windowHeight + buffer){
+                $('#slogan3 > h1').removeClass('scrolled');
+                $('#slogan3 > h2').removeClass('scrolled');
+                $('#slogan3 > img').removeClass('scrolled');
+            }
+        })
+    })
+    </script>
+</body>
+</html>
