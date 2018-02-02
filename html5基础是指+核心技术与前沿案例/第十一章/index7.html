@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #myCanvas {
+            background: url(img/bgp.png);
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        var canvas = document.getElementById('myCanvas')
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        var context = canvas.getContext('2d')
+        var sequence = []    // 人物帧
+        var frameCount = 1   // 人物动画的当前帧 默认第一帧
+        var frameTotal = 12 //总帧数
+        var man = {}  // 创建一个对象来对应正在跑步的人物
+        man.vx = 0  // 设置水平向上的默认速度0
+        man.x = 50 // 人物的初始x位置
+        man.vy = 0
+        man.y = window.innerHeight - 410// 人物初始y位置
+        for (var i = 1; i <= frameTotal; i++) {
+            loadImg('img/run_'+ i + '.png')    // 循环调用loading函数加载所有动画帧图像
+        }
+        function loadImg(url){
+            var img = new Image()
+            img.src = url   // 加载该路径对应的图像文件
+            sequence.push(img)   // 改图像放入sequence数组中
+        }
+        function run(e){
+            man.x += man.vx    // 根据动画人物的水平方向速度更新坐标位置
+            man.y += man.vy
+            if(man.x > canvas.width){   // 人物移动到画布外面
+                man.x = -300 // 回到画布最左侧
+            }
+            if(man.x < -300){
+                man.x = canvas.width // 如果到左侧之外 让人物到右侧
+            }
+            if(man.y > canvas.height){   // 人物移动到画布外面
+                man.y = -300 // 回到画布最左侧
+            }
+            if(man.y < -300){
+                man.y = canvas.height // 如果到左侧之外 让人物到右侧
+            }
+
+            frameCount++  // 刷新当前帧数
+
+            if(frameCount >= frameTotal){
+                frameCount = 1   // 回到第一帧
+            }
+            context.clearRect(0, 0, canvas.width, canvas.height)  // 请客画布显示
+            context.drawImage(sequence[frameCount], man.x, man.y) // 在画布中绘制当前要显示的动画帧
+        }
+        setInterval(run,100) //100ms 条用 播放一帧
+
+        document.onkeydown = function(e){   // 按下键
+            if(e.keyCode == 39){  // d
+                man.vx = 50  // x 50
+            }else if(e.keyCode == 37){  // a
+                man.vx = -50   // x - 50
+            }else if(e.keyCode == 38){
+                man.vy = -50
+            }else if(e.keyCode == 40){
+                man.vy = 50
+            }
+        }
+        document.onkeyup =function(e){ //松开键
+        man.vx = 0  // 重置x 0
+        man.vy = 0
+        }
+    </script>
+</body>
+
+</html>
