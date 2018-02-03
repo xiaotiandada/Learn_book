@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: rgb(255, 149, 0);
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 50%;
+            display: block;
+            margin: 20% auto 0;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        p {
+            color: #fff;
+            text-align: center;
+        }
+
+        #guajiang {
+            width: 240px;
+            height: 65px;
+            background: url(./img/result.png) no-repeat center;
+            background-size: cover;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/bg3.png" alt="">
+    <h1>刮一刮</h1>
+    <div id="guajiang">
+        <canvas id="mask" width="240" height="65">您的浏览器不支持,请升级</canvas>
+    </div>
+    <p id="status">请在以上的刮奖区刮奖</p>
+    <script>
+        window.onload = function () {
+            let canvas = document.getElementById('mask')
+            let context = canvas.getContext('2d')
+            context.fillStyle = '#d1d1d1' // 设置填充浅灰色
+            context.fillRect(0, 0, 240, 65) // 填充改颜色,覆盖下方背景图片
+            context.globalCompositeOperation = 'destination-out'
+
+            canvas.addEventListener('touchmove', function (event) { // 手指在画布上移动时
+                event.preventDefault() // 去除默认的响应行为
+                let touch = event.touches[0] // 获取触摸的第一个点
+                context.beginPath() // 开始路径绘制
+                // 所在触摸处绘制圆形 半径20px
+                context.arc(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop, 20, 0, Math.PI *
+                    2)
+                context.closePath() // 结束路径绘制
+                context.fillStyle = '#BDC3C7'  // 选择任意颜色
+                context.fill() // 填充颜色
+
+                let imgData = context.getImageData(0,0,240,65)  //  获取画布中的所有像素
+                let pixelsArr = imgData.data // 得到像素字节数据
+                let loop = pixelsArr.length  // 获取数据的长度
+                let transparent = 0           // 设置一个变量来记录变为透明度像素点数量
+                for (let i = 0; i < loop; i+=4 ) {  // 遍历循环每一个像素
+                    let alpha = pixelsArr[i + 3]  // 获取遍历每一个像素的透明值    
+                    if(alpha < 10){   // 当透明度小于10时 认为已被擦除
+                        transparent++       
+                    }
+                }
+                let percentage = transparent / (loop / 4)   // 计算透明像素所有像素中所占比例
+                if(percentage > .9){  // 比例大于90%
+                    document.getElementById('status').innerHTML = '刮奖结束!' // 显示刮奖结束字样
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
