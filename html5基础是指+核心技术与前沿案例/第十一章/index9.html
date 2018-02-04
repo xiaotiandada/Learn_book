@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #e67e22;
+            text-align: center;
+            margin: 40px;
+            color: #fff;
+            font-family: sans-serif;
+        }
+
+        img {
+            width: 60%;
+            display: block;
+            margin: 30% auto 0;
+            padding-left: 60px;
+
+            animation: page_shake 1s ease infinite;
+            -webkit-animation: page_shake 1s ease infinite;
+        }
+
+        h1 {
+            border-bottom: 1px solid rgba(255, 255, 255, .5);
+            padding-bottom: 20px;
+            font-size: 50px;
+        }
+        p{
+            font-size: 14px;
+            color: #fff;
+        }
+
+        @keyframes page_shake {
+            from {
+                transform: rotate(0deg);
+            }
+            4% {
+                transform: rotate(5deg);
+            }
+            12.5% {
+                transform: rotate(-5deg);
+            }
+            21% {
+                transform: rotate(5deg);
+            }
+            29% {
+                transform: rotate(-5deg);
+            }
+            37.5% {
+                transform: rotate(5deg);
+            }
+            46% {
+                transform: rotate(-5deg);
+            }
+            50%,
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        @-webkit-keyframes page_shake {
+            from {
+                transform: rotate(0deg);
+            }
+            4% {
+                transform: rotate(5deg);
+            }
+            12.5% {
+                transform: rotate(-5deg);
+            }
+            21% {
+                transform: rotate(5deg);
+            }
+            29% {
+                transform: rotate(-5deg);
+            }
+            37.5% {
+                transform: rotate(5deg);
+            }
+            46% {
+                transform: rotate(-5deg);
+            }
+            50%,
+            to {
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/shake.png" alt="">
+    <h1>摇一摇</h1>
+    <p id="status"></p>
+    <script>
+        window.onload = function () {
+            if (window.DeviceMotionEvent) { // 如果浏览器支持运动传感事件
+                window.addEventListener('devicemotion', deviceMotionHandler) // 侦听devicemotion
+            } else {
+                document.getElementById('status').innerHTML = '本设备不支持摇一摇'
+            }
+0
+            var threshold = 1000 //设置一个摇动的阀值
+            var x, y ,z ,lastX, lastY, lastZ = 0   // 本次摇晃和上一次摇晃的x ,y ,z 的速度值,初始值0
+            var lastTime, curTime   // 本次摇晃和上一次摇晃对应的时间
+            lastTime = new Date().getTime()   // 获取当前的时间
+
+
+            function deviceMotionHandler(eventData){
+                var acceleration = eventData.accelerationIncludingGravity  // 获取含重力在内的加速值
+                // 分别获取x,y,z
+                x = acceleration.x
+                y = acceleration.y
+                z = acceleration.z
+
+                curTime = new Date().getTime() // 获取当前时间
+                if( (curTime - lastTime) > 100 ){   // 当前时间距离上一次相差100ms
+                    // 奖各轴的加速度值变化量除以时间值, 乘以1000, 得到一个相对的速度值
+                    var speed = Math.abs(x + y + z -lastX - lastY - lastZ) / (curTime - lastTime)*1000
+                    document.getElementById('status').innerHTML = '您的摇一摇速度达到了' + speed // 在页面中显示当前速度
+                    lastTime = curTime
+                    lastX = x
+                    lastY = y
+                    lastZ = z
+                }
+                if(speed > threshold){  // 速度大于所设阀值
+                    window.removeEventListener('devicemotion',deviceMotionHandler) // 移除事件侦听
+                    document.getElementById('status').innerHTML = '恭喜您获得红包'
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
