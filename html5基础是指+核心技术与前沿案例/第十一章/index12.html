@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: rgb(115, 4, 185);
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        img {
+            margin: 10% 0 0 0
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 32px;
+            margin: 40px 50px 0;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #fff;
+        }
+
+        p {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/Map.png" alt="">
+    <h1>您的位置</h1>
+    <p id="status">地理位置加载中...</p>
+
+    <script src="../../jquery-3.1.1.js"></script>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(updateLocation,error);
+        } else {
+            document.getElementById("status").innerHTML = "该浏览器不支持 HTML5 Geolocation。";
+        }
+        function error(err) {
+            console.warn('ERROR(' + err.code + '): ' + err.message);
+            document.getElementById('status').innerHTML = '您的网络不佳或者别的原因,请排查~'            
+          };
+        function updateLocation(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            var accuracy = position.coords.accuracy;            
+
+            var url = "http://api.map.baidu.com/geocoder/v2/?ak=B3475112871cafd7401aa6395bde02f1&location="+latitude+","+longitude+"&output=json";
+            // var url = " http://api.map.baidu.com/geoconv/v1/?coords=114.21892734521,29.575429778924&from=1&to=5&ak=57b50R4F2GGPsfRZge6X0EW2XfWKUTbo&location";
+            // var url = "http://api.map.baidu.com/geocoder/v2/?ak=57b50R4F2GGPsfRZge6X0EW2XfWKUTbo&location="+latitude+","+longitude+"&output=json";
+            // http://api.map.baidu.com/geoconv/v1/?coords=114.21892734521,29.575429778924&from=1&to=5&ak=你的密钥 //GET请求
+            $.ajax({
+                type: "GET",
+                async: false,
+                url: url,
+                dataType: "jsonp",
+                success: function(json){
+                    document.getElementById("status").innerHTML = "纬度：" + latitude + "<br>经度：" + longitude + "<br>精确度：" + accuracy;
+                    
+                    document.getElementById('status').innerHTML = json.result.formatted_address
+
+                    console.log(json.result.sematic_description);
+                    
+                },
+                error:function(){
+                    console.log(1)
+                }
+
+            })
+
+
+        }
+    </script>
+</body>
+
+</html>
