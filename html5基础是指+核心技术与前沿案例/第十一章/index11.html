@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        body{
+            background: url(./img/bg5.png) no-repeat;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        #holder{
+            position: absolute;
+            width: 980px;
+            height: 300px;
+            line-height: 300px;
+            font-size: 35px;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -490px;
+            background: rgba(0, 0, 0, .2);
+        }
+        #canvas{
+            position: absolute;
+            z-index: -20;
+            top: 0;
+            left: 0;
+        }
+        #holder.hover{
+            border: 1px dashed #f00;
+        }
+        #holder.normal{
+            border: 1px dashed #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas">您的浏览器不支持canvas请升级</canvas>
+    <div id="holder" class="normal">拖动图片到这里</div>
+    <script>
+    window.onload = function(){
+        if(window.File && window.FileReader && window.FileList && window.Blob){
+            console.log('支持html5 file api')
+        }else{
+            console.log('不支持还特么l file api请切换浏览器')
+            return;
+        }
+
+        let holder = document.querySelector('#holder')
+        let canvas = document.querySelector('#canvas')
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+        let ctx = canvas.getContext('2d')
+
+        holder.ondragover = function(){
+            this.className = 'hover'
+            return false
+        }
+        holder.ondragend = function(){
+            this.className = 'normal'
+            return false
+        }
+        holder.ondrop = function(e){
+            this.className = 'normal'
+            e.preventDefault()
+            let file = e.dataTransfer.files[0]   // 获取到拖拽的第一个文件
+            let reader = new FileReader()  // 创建一个fileReader对象
+            reader.onload = function(event){  // 本地文件读取完毕后条用以下函数
+                let img = new Image() // 创建一个img对象
+                img.src = event.target.result  // 读取的二进制位图数据赋予该对象
+                img.onload = function(){
+                    ctx.clearRect(0,0,canvas.width,canvas.height)  // 清除canvas已有的内容
+                    ctx.drawImage(this, 0 , 0, canvas.width,canvas.height)  // 奖img对象显示在canvas中
+                    delete this //删除imgage对象 释放缓存
+                }
+            }
+            reader.readAsDataURL(file) // 在fileReader对象中读取文件内容
+            return false
+        }
+    }
+    </script>
+</body>
+</html>
