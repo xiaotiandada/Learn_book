@@ -10,7 +10,7 @@ const cnodeUrl = 'https://cnodejs.org/'
 const ep = new eventproxy()
 const app = express()
 
-app.get('/', function () {
+app.get('/', function (req,res) {
     superagent.get(cnodeUrl)
         .end(function (err, res) {
             if (err) {
