@@ -7,32 +7,117 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        body{
-            background: #16a085;
+        @font-face {
+            font-family: 'icon-font';
+            src: url('font/flat-ui-icons-regular.ttf'), url('font/flat-ui-icons-regular.eot'), url('font/flat-ui-icons-regular.woff'), url('font/flat-ui-icons-regular.svg');
         }
-        #audio-player{
+
+        body {
+            background: #16A085;
+            margin: 40px;
+            color: #FFF;
+            font-family: sans-serif;
+        }
+
+        #audio-player {
             width: 480px;
             height: 100px;
             border-radius: 20px;
             border: 2px solid rgba(255, 255, 255, .8);
             position: relative;
         }
-        @font-face{
+
+        #audio-player button {
+            font-size: 0;
+            background: none;
+            border: 0;
+            position: absolute;
+        }
+
+        #play {
+            left: 0px;
+        }
+
+        #pause {
+            left: 50px;
+        }
+
+        #play::after {
+            content: '\e616';
+            font-size: 36px;
             font-family: 'icon-font';
-            src: url('font/flat-ui-icons-regular.ttf'),
-            url('font/flat-ui-icons-regular.eot'),
-            url('font/flat-ui-icons-regular.woff'),
-            url('font/flat-ui-icons-regular.svg'),
+            color: #FFF;
+            line-height: 100px;
+            cursor: pointer;
+        }
+
+        #play:hover::after {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        #pause::after {
+            content: '\e615';
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            line-height: 100px;
+            cursor: pointer;
+        }
+
+        #pause:hover::after {
+            color: rgba(255, 255, 255, .8);
+        }
+
+        #progress-bar {
+            width: 0px;
+            background: #FFF;
+            z-index: 100;
+        }
+
+        #progress-bg {
+            width: 240px;
+            background: rgba(255, 255, 255, .3);
+            z-index: 200;
+        }
+
+        .progress {
+            position: absolute;
+            height: 10px;
+            top: 45px;
+            left: 150px;
+            border-radius: 10px;
+        }
+
+        #play-status {
+            position: absolute;
+            left: 420px;
+        }
+
+        #play-status.mute::after {
+            content: '\e618';
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            line-height: 100px;
+            cursor: pointer;
+        }
+
+        #play-status.unmute::after {
+            content: '\e617';
+            font-size: 36px;
+            font-family: 'icon-font';
+            color: #FFF;
+            line-height: 100px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <audio autoplay controls>
+    <audio id="music">
         <source src="music.ogg" type="audio/ogg">
         <source src="music.mp3" type="audio/mp3">
-        <source src="music.wav" type="audio/wav">
-        您的浏览器不支持音频播放
+        <source src="music.wav" type="audio/wav"> 您的浏览器不支持音频播放
     </audio>
     <div id="audio-player">
         <button id="play">Play</button>
@@ -41,6 +126,44 @@
         <div id="progress-bg" class="progress"></div>
         <div id="play-status" class="mute"></div>
     </div>
+
+    <script>
+    window.onload = function(){
+        let player = document.getElementById('audio-player')
+        let play = document.getElementById('play')
+        let pause = document.getElementById('pause')
+        let bar = document.getElementById('progress-bar')
+        let music = document.getElementById('music')
+        let barbg = document.getElementById('progress-bg')
+        let playstatus = document.getElementById('play-status')
+
+        // 获取进度条背景的宽度
+        let totalWidth = barbg.offsetWidth
+        play.onclick = function(){
+            music.play()
+            playstatus.className = 'unmute'
+        }
+        pause.onclick = function(){
+            music.pause()
+            playstatus.className = 'mute'
+        }
+        music.addEventListener('timeupdate',showProgress)
+        function showProgress(){
+            let progress = music.currentTime / music.duration
+            bar.style.width = progress*totalWidth + 'px'
+            console.log(progress)
+            if(progress >= 1){
+                music.src = 'music.mp3'
+                music.play()
+            }
+        }
+        barbg.onmousedown = function(event){
+            let e = event || window.event
+            let pos = e.clientX - barbg.offsetLeft - player.offsetLeft
+            music.currentTime = music.duration * pos / totalWidth
+        }
+    }
+    </script>
 </body>
 
 </html>
