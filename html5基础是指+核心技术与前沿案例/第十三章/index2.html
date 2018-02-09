@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
+    <title>HTML5 Example</title>
+    <style type="text/css">
         body {
             background: #1ABC9C;
             margin: 50px;
@@ -15,7 +13,7 @@
         }
 
         img {
-            width: 60%;
+            width: 300px;
             margin-bottom: 50px;
         }
 
@@ -44,43 +42,44 @@
 <body>
     <img src="microphone.png" alt="microphone">
     <div id="status">0</div>
-
-    <script>
-    window.onload = function(){
-        let mystatus = document.getElementById('status')
-        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia
-        if(!navigator.getUserMedia){
-            mystatus.innerHTML = '您的浏览器不支持获取音频'
+    <script type="text/javascript">
+        let mystatus = document.getElementById("status");
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia;
+        if (!navigator.getUserMedia) {
+            mystatus.innerHTML = "您的浏览器不支持获取音频。"
         }
-        navigator.getUserMedia({audio: true}, onSuccess, onError)  // 调用麦克风捕捉音频信息,成功触发onSuccess 失败触发onError
-        function onError(){
-            mystatus.innerHTML = '获取音频好像问题了'
-        }
-        function onSuccess(stream){
-            let audioContext = window.audioContext || window.webkitAudioContext
-            let context = new audioContext()  // 创建一个管理 播放声音对象
-            let liveSource = context.createMediaStreamSource(stream) // 奖麦克风的声音输入这个对象
-            let levelChecker = context.createSrciptProcessor(4096,1,1) // 创建一个音频分析对象,采样缓冲区大小为4096,输入和输出都是单声道
-            liveSource.connect(levelChecker)  // 分析对象与麦克风进行连接
-            levelChecker.onaudioprocess = function(e){ // 开始处理音频
-                let buffer = e.inputBuffer.getChannelData(0) // 获得缓冲区的输入音频,转换为包含了PCM通道数据的32位浮点数组
-                // 创建变了并迭代来获取最大音频值
-                let maxVal = 0
-                for(let i = 0;i<buffer.length;i++){
-                    if(maxVal < buffer[i]){
-                        maxVal = buffer[i]
+        navigator.getUserMedia({
+            audio: true
+        }, onSuccess, onError); //调用麦克风捕捉音频信息，成功时触发onSuccess函数，失败时触发onError函数
+        function onSuccess(stream) {
+            let audioContext = window.AudioContext || window.webkitAudioContext;
+            let context = new audioContext(); //创建一个管理、播放声音的对象 创建一个管理和播放声音的audiocontext对象
+            let liveSource = context.createMediaStreamSource(stream); //将麦克风的声音输入这个对象
+            let levelChecker = context.createScriptProcessor(4096, 1, 1); //创建一个音频分析对象，采样的缓冲区大小为4096，输入和输出都是单声道
+            liveSource.connect(levelChecker); //将该分析对象与麦克风音频进行连接
+            levelChecker.onaudioprocess = function (e) { //开始处理音频
+                let buffer = e.inputBuffer.getChannelData(0); //获得缓冲区的输入音频，转换为包含了PCM通道数据的32位浮点数组
+                //创建变量并迭代来获取最大的音量值
+                let maxVal = 0;
+                for (let i = 0; i < buffer.length; i++) {
+                    if (maxVal < buffer[i]) {
+                        maxVal = buffer[i];
                     }
                 }
-                // 显示音量值
-                mystatus.innerHTML = '您的音量值: ' + Math.round(maxVal*100)
-                if(maxVal > .5){
-                    // 当前音量值大于.5 显示声音太响,并断开连接
-                    mystatus.innerHTML = '您的声音太响了'
-                    liveSource.disconnect(levelChecker)
+                //显示音量值
+                mystatus.innerHTML = "您的音量值：" + Math.round(maxVal * 100);
+                if (maxVal > .5) {
+                    //当音量值大于0.5时，显示“声音太响”字样，并断开音频连接
+                    mystatus.innerHTML = "您的声音太响了!!";
+                    liveSource.disconnect(levelChecker);
                 }
-            }
+            };
         }
-    }   
+
+        function onError() {
+            mystatus.innerHTML = "获取音频时好像出了点问题。"
+        }
     </script>
 </body>
 
