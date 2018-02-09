@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background: #1ABC9C;
+            margin: 50px;
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        img {
+            width: 60%;
+            margin-bottom: 50px;
+        }
+
+        #record {
+            display: block;
+            border: 0;
+            border-radius: 5px;
+            background: #FFF;
+            color: #16A085;
+            padding: 15px 100px;
+            margin: 0 auto;
+            font-size: 24px;
+        }
+
+        #record:hover {
+            background: rgba(255, 255, 255, .9);
+        }
+
+        #status {
+            color: #FFF;
+            font-size: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="microphone.png" alt="microphone">
+    <div id="status">0</div>
+
+    <script>
+    window.onload = function(){
+        let mystatus = document.getElementById('status')
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia
+        if(!navigator.getUserMedia){
+            mystatus.innerHTML = '您的浏览器不支持获取音频'
+        }
+        navigator.getUserMedia({audio: true}, onSuccess, onError)  // 调用麦克风捕捉音频信息,成功触发onSuccess 失败触发onError
+        function onError(){
+            mystatus.innerHTML = '获取音频好像问题了'
+        }
+        function onSuccess(stream){
+            let audioContext = window.audioContext || window.webkitAudioContext
+            let context = new audioContext()  // 创建一个管理 播放声音对象
+            let liveSource = context.createMediaStreamSource(stream) // 奖麦克风的声音输入这个对象
+            let levelChecker = context.createSrciptProcessor(4096,1,1) // 创建一个音频分析对象,采样缓冲区大小为4096,输入和输出都是单声道
+            liveSource.connect(levelChecker)  // 分析对象与麦克风进行连接
+            levelChecker.onaudioprocess = function(e){ // 开始处理音频
+                let buffer = e.inputBuffer.getChannelData(0) // 获得缓冲区的输入音频,转换为包含了PCM通道数据的32位浮点数组
+                // 创建变了并迭代来获取最大音频值
+                let maxVal = 0
+                for(let i = 0;i<buffer.length;i++){
+                    if(maxVal < buffer[i]){
+                        maxVal = buffer[i]
+                    }
+                }
+                // 显示音量值
+                mystatus.innerHTML = '您的音量值: ' + Math.round(maxVal*100)
+                if(maxVal > .5){
+                    // 当前音量值大于.5 显示声音太响,并断开连接
+                    mystatus.innerHTML = '您的声音太响了'
+                    liveSource.disconnect(levelChecker)
+                }
+            }
+        }
+    }   
+    </script>
+</body>
+
+</html>
