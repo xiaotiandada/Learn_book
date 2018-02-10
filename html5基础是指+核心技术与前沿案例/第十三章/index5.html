@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            background: #ECF0F1;
+            margin: 50px;
+            text-align: center;
+        }
+
+        #video,
+        #canvas {
+            display: inline-block;
+            background: #BDC3C7;
+        }
+
+        button {
+            font-size: 32px;
+            padding: 10px 100px;
+            display: block;
+            margin: 20px auto;
+            clear: both;
+            border-radius: 6px;
+            background: #3498DB;
+            border: 0;
+            color: #FFF;
+        }
+    </style>
+</head>
+
+<body>
+    <video id="video" width="400" height="300" autoplay></video>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <button id="capture">Capture</button>
+    <script>
+        var capture = document.getElementById('capture')
+        var video = document.getElementById('video')
+        var canvas = document.getElementById('canvas')
+        var context = canvas.getContext('2d')
+
+        navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia
+        window.URL = window.URL || window.webkitURL
+        navigator.getUserMedia({
+            video: true
+        }, onSuccess, onError) // 调用摄像头捕捉视频流
+        function onSuccess(stream) {
+            video.src = window.URL.createObjectURL(stream)
+        }
+
+        function onError() {
+            console.log('获取视频流出错')
+        }
+
+        capture.onclick = function (e) {
+            e.preventDefault()
+            // 抓取video元素的当前图像绘制到canvas
+            context.drawImage(video, 0, 0, 400, 300)
+            var img = context.getImageData(0, 0, 400, 300) // 从canvas中获取位图数据
+            var picLength = 400 * 300 // 获取像素个数
+            for (var i = 0; i < picLength * 4; i += 4) {
+                var myReb = img.data[i] // 第一个单位代表红色
+                var myGreen = img.data[i + 1] // 绿色
+                var myBlue = img.data[i + 2] // 蓝色
+                var myGray = parseInt((myReb + myGreen + myBlue) / 3) // 平均获得灰度值
+                img.data[i] = myGray
+                img.data[i + 1] = myGray
+                img.data[i + 2] = myGray
+            }
+            context.putImageData(img, 0, 0) // 处理后的图像再次绘制到canvas中
+
+            var image = canvas.toDataURL('image/png'); // 将画布数据转换为png格式图像
+            image = image.replace('image/png', 'image/octet-stream') // 对图像数据加工 替换mimetype 便于浏览器执行文件另存为
+            window.location.href = image // 触发文件另存为 文件对下为image
+        }
+    </script>
+</body>
+
+</html>
