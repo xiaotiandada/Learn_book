@@ -1,4 +1,3 @@
-
 let sbtn = document.getElementById('sbtn')
 let lbtn = document.getElementById('lbtn')
 let scene1 = document.getElementById('scene1')
@@ -174,9 +173,7 @@ let mi = 0
 let pl = p.length
 
 window.onload = function () {
-    setTimeout(() => {
-        document.getElementById('loading').style.display = 'none'
-    }, 1000);
+    document.getElementById('loading').style.display = 'none'
     showScene1()
 }
 
@@ -224,29 +221,38 @@ musicon.onclick = function () {
     music.pause()
 }
 
-p.sort(function(){
-    return Math.random()>0.5?-1:1
+p.sort(function () {
+    return Math.random() > 0.5 ? -1 : 1
 })
 
-function showScene2 (){
-    TweenMax.to(scene1, .5, {left: "-100%"})
-    TweenMax.to(scene2, .5, {left: 0})
-    TweenMax.to(t3, 1, {opacity: 1})
+function showScene2() {
+    TweenMax.to(scene1, .5, {
+        left: "-100%"
+    })
+    TweenMax.to(scene2, .5, {
+        left: 0
+    })
+    TweenMax.to(t3, 1, {
+        opacity: 1
+    })
     drawMode = true
 }
 sbtn.onclick = showScene2
-document.addEventListener('touchstart',getPosition)
+document.addEventListener('touchstart', getPosition)
 
-function getPosition(ev){
-    if(drawMode){
+function getPosition(ev) {
+    if (drawMode) {
         ev = ev || window.event
         ev.preventDefault()
-        let xbias = (window.innerWidth - 320)/2
+        let xbias = (window.innerWidth - 320) / 2
         let touch = ev.touches[0]
-        let point = {x: 0,y: 0}
+        let point = {
+            x: 0,
+            y: 0
+        }
         point.x = Number(touch.pageX)
         point.y = Number(touch.pageY)
-        if(mi < pl){
+        if (mi < pl) {
             let objdiv = document.createElement('div')
             let objname = 's_' + mi
             objdiv.id = objname
@@ -261,28 +267,58 @@ function getPosition(ev){
             objdiv.style.zIndex = mi
             objdiv.innerHTML = ' '
             scene2.appendChild(objdiv)
-            TweenMax.to(objdiv, 1, {top:p[mi][1],left:p[mi][0] + xbias})
+            TweenMax.to(objdiv, 1, {
+                top: p[mi][1],
+                left: p[mi][0] + xbias
+            })
             mi++
         } else {
             drawMode = false
-            TweenMax.to(lbtn, .8, {opacity: 1,top: '80%'})
+            TweenMax.to(lbtn, .8, {
+                opacity: 1,
+                top: '80%'
+            })
         }
     }
     return false
 }
 
-document.addEventListener('touchmove',function(ev){
+document.addEventListener('touchmove', function (ev) {
     ev = ev || window.event
     ev.preventDefault()
 })
 
-function showScene3(){
-    TweenMax.to(scene2, .5, {left: '-100%'})
-    TweenMax.to(scene3, .5, {left: 0})
-    TweenMax.to(t4, 1, {top: '10%',opacity: 1, delay: .7})
-    TweenMax.to(t5, 1, {top: '23%',opacity: 1, delay: .9})
-    TweenMax.to(t6, 1, {top: '30%',opacity: 1, delay: 1.3})
-    TweenMax.to(t7, 1, {top: '85%',opacity: 1, delay: .2})
-    TweenMax.to(ercode, 1, {top:'45%',opacity: 1, delay: 1.8})
+function showScene3() {
+    TweenMax.to(scene2, .5, {
+        left: '-100%'
+    })
+    TweenMax.to(scene3, .5, {
+        left: 0
+    })
+    TweenMax.to(t4, 1, {
+        top: '10%',
+        opacity: 1,
+        delay: .7
+    })
+    TweenMax.to(t5, 1, {
+        top: '23%',
+        opacity: 1,
+        delay: .9
+    })
+    TweenMax.to(t6, 1, {
+        top: '30%',
+        opacity: 1,
+        delay: 1.3
+    })
+    TweenMax.to(t7, 1, {
+        top: '85%',
+        opacity: 1,
+        delay: .2
+    })
+    TweenMax.to(ercode, 1, {
+        top: '45%',
+        opacity: 1,
+        delay: 1.8
+    })
 }
 lbtn.onclick = showScene3
