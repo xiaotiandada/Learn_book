@@ -7,6 +7,7 @@ git clone git@github.com:xiaotiandada/Learn_book.git
 cd Learn_book
 ~~~
 
-> HeadFirstAjax SourceCode
+> HeadFirstAjax [SourceCode]( https://resources.oreilly.com/examples/9780596515782)
 
-> https://resources.oreilly.com/examples/9780596515782
+
+> ObjectOrientedJavascript javascript面向对象编程指南
