@@ -557,3 +557,159 @@
 // 0
 // arr[2]()
 // 2
+
+
+// 3.5.3 getter setter
+
+// var getValue, setValue;
+// (function(){
+//     var secret = 0;
+
+//     getValue = function(){
+//         return secret;
+//     };
+
+//     setValue = function(v){
+//         if(typeof v === 'number'){
+//             secret = v;
+//         }
+//     }
+// })();
+
+// setValue()
+// undefined
+// getValue()
+// 0
+// setValue(123)
+// undefined
+// getValue()
+// 123
+// setValue(false)
+// undefined
+// getValue()
+// 123
+
+// function setup(x){
+//     var i = 0;
+//     return function(){
+//         return x[i++];
+//     }
+// }
+
+// var next = setup(['a','b','c']);
+
+// next()
+// "a"
+// next()
+// "b"
+// next()
+// "c"
+// next()
+// undefined
+
+// 3.7
+// 1
+
+
+// 2
+// console.log(
+//     parseInt(1e1),
+//     parseInt('1e1'),
+//     parseFloat('1e1'),
+//     isFinite(0/10),
+//     isFinite(20/0),
+//     isNaN(parseInt(NaN))
+// )
+
+// 10 1 10 true false true
+
+// 3
+
+// var a = 1;
+// function f(){
+//     function n(){
+//         alert(a)
+//     }
+//     var a = 2;
+//     n()
+// }
+
+// f()
+
+// 4
+
+// var f = alert
+// eval('f("bool")')
+
+// var e;
+// var f = alert
+// eval('e=f')('bool')
+
+// (function(){
+//     return alert
+// }()('bol!'))
+
+// var str = '#00ff00'
+// var rgb = [0,0,0]
+// if(/#(..)(..)(..)/g.test(str)){
+//     rgb = [parseInt(RegExp.$1,16),parseInt(RegExp.$2,16),parseInt(RegExp.$3,16),]
+// }
+
+// console.log(rgb.join(','))
+
+// function getRGB(hex){
+//     var rgb = [0,0,0]
+//     var reg = /#(..)(..)(..)/g
+//     if(reg.test(hex)){
+//         rgb = [
+//             parseInt(RegExp.$1,16),
+//             parseInt(RegExp.$2,16),
+//             parseInt(RegExp.$3,16)
+//         ]
+//     }
+//     return 'rgb('+rgb+')'
+// }
+
+// var a = getRGB('#00ff00')
+// console.log(a)
+
+
+// function getRGB(hex){
+//     var rgb = [0,0,0]
+//     var reg = /#(..)(..)(..)/g
+//     if(reg.test(hex)){
+//         reg = [
+//             parseInt(RegExp.$1, 16),
+//             parseInt(RegExp.$2, 16),
+//             parseInt(RegExp.$3, 16)
+//         ]
+//     }
+//         return rgb
+// }
+
+
+// function getRGB(hex){
+//     var rgb = [0,0,0]
+//     var reg = /#(..)(..)(..)/g
+
+//     if(reg.test(hex)){
+//         reg = [
+//             parseInt(RegExp.$1, 16),
+//             parseInt(RegExp.$2, 16),
+//             parseInt(RegExp.$3, 16)
+//         ]
+//     }
+//     return rgb
+// }
+
+// var str = '#00ff00'
+// var reg = /#(..)(..)(..)/g
+// var rgb = [0,0,0]
+// if(reg.test(str)){
+//     console.log(RegExp.$1)
+//     console.log(RegExp.$2)
+//     console.log(RegExp.$3)
+//     console.log(
+//         rgb = [RegExp.$1,RegExp.$2,RegExp.$3]
+//     )
+// }
