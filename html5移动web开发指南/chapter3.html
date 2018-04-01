@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // if(window.localStorage){
+        //     // localstorage
+        // }
+        // if(window.sessionStorage){
+        //     // sessionstorage
+        // }
+
+        // html5 storage api
+        // interface storage {
+        //     readonly attribute unsigned long length;
+        //     DOMString？ key(in unsigned long index);
+        //     getter DOMString getItem(in DOMString key);
+        //     setter creator void setItem(in DOMString key, in DOMString value);
+        //     deleter void removeIem(in DOMString key);
+        //     void clear();
+        // };
+
+        // localStorage.setItem('name','i an name');
+        // localStorage.getItem('name');
+        // localStorage.key(1);
+
+        // console.log(localStorage.getItem('name'));
+        // console.log(localStorage.key(0));
+        // console.log(localStorage.key(1));
+
+        // delte key name item
+        // localStorage.removeItem('name')
+
+        // delte all key/value items
+        // localStorage.clear()
+
+        //json
+        var userData = {
+            name: 'sankyuname',
+            account: 'sankyu',
+            level: 1,
+            disabled: true
+        };
+        // console.log(userData)
+        // // storage userdata
+        // localStorage.setItem('userData',JSON.stringify(userData))
+
+        // console.log(JSON.stringify(userData))
+
+        // // read userdata  = new var userdata
+        // var newUserData = JSON.parse(localStorage.getItem('userData'))
+
+        // console.log(JSON.parse(localStorage.getItem('userData')))
+        
+
+        // //delte storage item
+        // localStorage.removeItem('userData')
+
+        // console.log(newUserData)
+
+        // storage userData
+        localStorage.setItem('userData',JSON.stringify(userData))
+
+        var userData = JSON.parse(localStorage.getItem('userData'))
+
+        // JSON.parse(localStorage.getItem('userData')).name = 'new sankyu name'
+
+        userData.name = 'new sankyu name'
+        
+        localStorage.setItem('userData',JSON.stringify(userData))
+
+        console.log(userData.name)
+
+        console.log(JSON.parse(localStorage.getItem('userData')).name)
+    </script>
+</body>
+</html>
