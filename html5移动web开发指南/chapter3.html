@@ -40,12 +40,12 @@
         // localStorage.clear()
 
         //json
-        var userData = {
-            name: 'sankyuname',
-            account: 'sankyu',
-            level: 1,
-            disabled: true
-        };
+        // var userData = {
+        //     name: 'sankyuname',
+        //     account: 'sankyu',
+        //     level: 1,
+        //     disabled: true
+        // };
         // console.log(userData)
         // // storage userdata
         // localStorage.setItem('userData',JSON.stringify(userData))
@@ -64,19 +64,45 @@
         // console.log(newUserData)
 
         // storage userData
-        localStorage.setItem('userData',JSON.stringify(userData))
+        // localStorage.setItem('userData',JSON.stringify(userData))
 
-        var userData = JSON.parse(localStorage.getItem('userData'))
+        // var userData = JSON.parse(localStorage.getItem('userData'))
 
         // JSON.parse(localStorage.getItem('userData')).name = 'new sankyu name'
 
-        userData.name = 'new sankyu name'
+        // userData.name = 'new sankyu name'
         
-        localStorage.setItem('userData',JSON.stringify(userData))
+        // localStorage.setItem('userData',JSON.stringify(userData))
 
-        console.log(userData.name)
+        // console.log(userData.name)
 
-        console.log(JSON.parse(localStorage.getItem('userData')).name)
+        // console.log(JSON.parse(localStorage.getItem('userData')).name)
+
+        // 3.3
+        // sessionStorage.setItem('name','i am name')
+        // console.log(sessionStorage.getItem('name'))
+
+        //storage event listener
+        // storage event api
+        // interface storageEvent: Event{
+        //     readonly attribute DOMString key;
+        //     readonly attribute DOMString? oldValue;
+        //     readonly attribute DOMString? newValue;
+        //     readonly attribute DOMString url;
+        //     readonly attribute Storage? storageArea;
+        //     void initStorageEvent(in DOMString typeArg,
+        //                           in boolean canBubbleArg,
+        //                           in boolean cancelableArg,
+        //                           in DOMString keyArg,
+        //                           in DOMString oldValueArg,
+        //                           in DOMString urlArg,
+        //                           in Storage storageAreaArg);
+        // }
+
+        window.addEventListener('storage',showStorageEvent, true);
+        function showStorageEvent(e){
+            console.log(e)
+        }
     </script>
 </body>
 </html>
