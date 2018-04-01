@@ -12,4 +12,4 @@ cd Learn_book
 
 > ObjectOrientedJavascript javascript面向对象编程指南
 
-> html5移动web开发指南W
+> html5移动web开发指南
