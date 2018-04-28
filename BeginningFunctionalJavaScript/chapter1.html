@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var percentValue = 5
+        // var calculateTax = (value) => {return value/100 * (100+percentValue)}
+        // console.log(calculateTax(1000)) // 1050 
+        // console.log(calculateTax(5)) //  
+        // percentValue = 2
+        // console.log(calculateTax(5)) //  
+        // percentValue = 0        
+        // console.log(calculateTax(5)) //  
+
+        // var calculateTax = (value, percentValue) => {
+        //     return value/100 * (100+percentValue)
+        // }
+
+        // console.log(calculateTax(1000,5)) // 1050
+
+        // var simple = (e) => { return e } // 一个简单的函数
+        // simple(5) // 用其名称调用
+
+        // var obj = { simple: (a)=>{ return a} }
+        // obj.simple(5)  // 用其名称及其关联对象调用
+
+        // var identiy = (i) => {
+        //     return i
+        // }
+
+        // 命令式方式遍历数组
+        // var array = [1,2,3]
+        // for(i=0;i<array.length;i++){
+        //     console.log(array[i])
+        // }
+
+        // 用声明式方法遍历数组
+        // var array = [1,2,3]
+        // array.forEach((element) => console.log(element)) // 1  2  3
+        
+        // 纯函数
+        // var double = (value) => value * 2
+
+        // let global = "something"
+        // let function1 = (input) => {
+        //     // 处理input
+        //     // 改变 global
+        //     global = "songthingElase"
+        // }
+        // let function2 = () => {
+        //     if(global === "something") {
+        //         // 业务逻辑
+        //     }
+        // }
+
+        // let function1 = (input, global) => {
+        //     //
+        //     global = 'somethingelse'
+        // }
+        // let function2 = (global) => {
+        //     if(global === 'something'){
+        //         //
+        //     }
+        // }
+
+        var longRunningFnBookKeeper = {2:3, 4:5}
+        // 检查key是否在longRunningFnBookeeper中
+        // 如果在则返回结果 否则更新记账对象
+        longRunningFnBookKeeper.hasOwnProperty(ip) ?
+            longRunningFnBookKeeper[ip] : 
+            longRunningFnBookKeeper[ip] = longRunningFunction(ip)
+        longRunningFunction = (ip) => {
+            // do long running taks and return
+        }
+    </script>
+</body>
+</html>
