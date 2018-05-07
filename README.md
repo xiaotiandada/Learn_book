@@ -15,3 +15,4 @@ cd Learn_book
 ### html5移动web开发指南
 ### 数据结构与算法JavaScript描述
 ### JavaScriptES6 函数式编程入门经典
+### JavaScript设计模式
