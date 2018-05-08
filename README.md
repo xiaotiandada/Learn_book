@@ -16,3 +16,4 @@ cd Learn_book
 ### 数据结构与算法JavaScript描述
 ### JavaScriptES6 函数式编程入门经典
 ### JavaScript设计模式
+### Javascripty语言精髓
