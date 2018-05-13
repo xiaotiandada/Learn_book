@@ -17,3 +17,4 @@ cd Learn_book
 ### JavaScriptES6 函数式编程入门经典
 ### JavaScript设计模式
 ### Javascripty语言精髓
+### JavaScript忍者秘籍
