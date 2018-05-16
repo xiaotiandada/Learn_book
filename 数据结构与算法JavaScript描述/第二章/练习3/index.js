@@ -1,18 +1,25 @@
+Array.martix = function (numrows, numcols, initial){
+  var arr = []
+  for(var i = 0;i<numrows;++i){
+    var colums = []
+    for(var j = 0; j< numcols;++j){
+      colums[j] = initial
+    }
+  arr[i] = colums
+  }
+  return arr
+}
+
 function weekTemps(){
-  this.dataStore = [
-    [1,2,3,4,5,6,7],
-    [2,3,4,5,6,7,8],
-    [1,2,3,4,5,6,7],
-    [1,2,3,4,5,6,7]
-  ]
-  this.add = add
+  this.dataStore = []
+  this.addResult = addResult
   this.oneAverage = oneAverage
   this.allAverage = allAverage
   this.monthAverage = monthAverage
 }
 
-function add(temp){
-  this.dataStore.push(temp)
+function addResult(week, day, data){
+  this.dataStore[week][day] = data
 }
 
 function average(){
@@ -42,7 +49,7 @@ function oneAverage(week){
   for(var i = 0;i<this.dataStore[oneWeek].length;++i){
     total += this.dataStore[oneWeek][i]
   }
-  return total / this.dataStore[oneWeek].length
+  return parseInt(total / this.dataStore[oneWeek].length)
 }
 
 function allAverage(week){
@@ -58,9 +65,7 @@ function allAverage(week){
 
       totalAverage = total / this.dataStore[i].length
 
-      weekAverager.push(totalAverage)
-
-      // console.log( 'week: ' + parseInt(i + 1) + ' average： ' + totalAverage )
+      weekAverager.push(parseInt(totalAverage))
 
       total = 0
       totalAverage = 0
@@ -69,10 +74,15 @@ function allAverage(week){
 }
 
 var thisWeek = new weekTemps()
-// thisWeek.add(52)
-// thisWeek.add(53)
-// thisWeek.add(54)
 
-// console.log(thisWeek.monthAverage())
-// console.log(thisWeek.oneAverage(2))
-console.log(thisWeek.allAverage())
+// 初始化数组数据
+thisWeek.dataStore = Array.martix(7,7,0)
+thisWeek.addResult(1,1,28)
+
+console.log(thisWeek.monthAverage() + ' 月')
+console.log(thisWeek.oneAverage(2) + ' 指定周')
+console.log(thisWeek.allAverage() + ' 所有周')
+console.log(thisWeek.dataStore + ' 所有数据')
+
+
+console.log(thisWeek.dataStore + ' 添加数据后的所有数据')
