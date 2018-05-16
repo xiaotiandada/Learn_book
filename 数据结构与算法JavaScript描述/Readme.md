@@ -68,6 +68,30 @@ console.log(thisStudent.showAverage())
 
 2.将一组单词存在一个数组中，并按照正序和倒序分别现实这些单词。
 
+``` bash
+var wordArr = [
+  'hello',
+  'world',
+  'apple',
+  'pig',
+  'data',
+  'week',
+  'student'
+]
+
+
+var ascendingOrder = wordArr.sort()
+
+console.log(ascendingOrder)
+
+var dscendingOrder =  wordArr.sort().reverse()
+// var dscendingOrder =  ascendingOrder.reverse()
+
+
+console.log(dscendingOrder)
+
+```
+
 3.修改本章前面出现过的weeklyTemps对象,使它可以使用一个二维数组来存储每月的有用数据。增加一些方法用以现实平均月树、具体某一周平均数和所有周的平均数。
 
 4.创建这样的一个对象，他将字母存储在一个数组中，并且用一个方法可以将字母连在一起，显示成一个单词。
