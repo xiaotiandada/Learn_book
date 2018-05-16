@@ -36,6 +36,36 @@ var nums = Array.matrix(5,5,0)
 
 [查看练习](https://github.com/xiaotiandada/Learn_book/tree/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95JavaScript%E6%8F%8F%E8%BF%B0/%E7%AC%AC%E4%BA%8C%E7%AB%A0)
 
+``` bash
+function StudentResult(){
+  this.studentData = []
+  this.addResult = addResult
+  this.showAverage = showAverage
+}
+
+function addResult(result){
+  this.studentData.push(result)
+}
+
+function showAverage (){
+  var total = 0
+  for(var i = 0, len = this.studentData.length; i < len; ++i ){
+    total += this.studentData[i]
+  }
+  return ( total / this.studentData.length ) || 0
+}
+
+var thisStudent = new StudentResult()
+
+console.log(thisStudent.showAverage())
+
+
+thisStudent.addResult(90)
+thisStudent.addResult(88)
+
+console.log(thisStudent.showAverage())
+```
+
 2.将一组单词存在一个数组中，并按照正序和倒序分别现实这些单词。
 
 3.修改本章前面出现过的weeklyTemps对象,使它可以使用一个二维数组来存储每月的有用数据。增加一些方法用以现实平均月树、具体某一周平均数和所有周的平均数。
