@@ -48,6 +48,7 @@ function oneAverage(week){
 function allAverage(week){
   var total = 0
   var totalAverage = 0
+  var weekAverager = []
     for(var i = 0;i<this.dataStore.length;++i){
       
       for(var j = 0;j<this.dataStore[i].length;++j){
@@ -57,14 +58,14 @@ function allAverage(week){
 
       totalAverage = total / this.dataStore[i].length
 
-      console.log( 'week: ' + parseInt(i + 1) + ' average： ' + totalAverage )
+      weekAverager.push(totalAverage)
+
+      // console.log( 'week: ' + parseInt(i + 1) + ' average： ' + totalAverage )
 
       total = 0
       totalAverage = 0
-      
-      // total = parseInt(total / this.dataStore.length)
     }
-  return totalAverage
+  return weekAverager
 }
 
 var thisWeek = new weekTemps()
