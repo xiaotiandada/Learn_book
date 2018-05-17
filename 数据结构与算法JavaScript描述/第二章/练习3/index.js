@@ -76,8 +76,10 @@ function allAverage(week){
 var thisWeek = new weekTemps()
 
 // 初始化数组数据
-thisWeek.dataStore = Array.martix(7,7,0)
-thisWeek.addResult(1,1,28)
+thisWeek.dataStore = Array.martix(4,7,0)
+thisWeek.addResult(1,1,280)
+thisWeek.addResult(2,1,280)
+thisWeek.addResult(3,1,280)
 
 console.log(thisWeek.monthAverage() + ' 月')
 console.log(thisWeek.oneAverage(2) + ' 指定周')
@@ -85,4 +87,4 @@ console.log(thisWeek.allAverage() + ' 所有周')
 console.log(thisWeek.dataStore + ' 所有数据')
 
 
-console.log(thisWeek.dataStore + ' 添加数据后的所有数据')
+console.log(thisWeek.dataStore)
