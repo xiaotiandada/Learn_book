@@ -195,3 +195,27 @@ console.log(thisWeek.dataStore)
 
 4.创建这样的一个对象，他将字母存储在一个数组中，并且用一个方法可以将字母连在一起，显示成一个单词。
 
+``` bash
+function Word(){
+  this.words = []
+  this.addWord = addWord
+  this.showWord = showWord
+}
+
+function addWord(word){
+  this.words.push(word)
+}
+
+function showWord (){
+  return this.words.join('')
+}
+
+var word = new Word()
+
+word.addWord('a')
+word.addWord('p')
+word.addWord('p')
+
+console.log( word.showWord() )
+
+```
