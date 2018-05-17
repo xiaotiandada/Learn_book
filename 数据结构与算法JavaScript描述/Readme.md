@@ -219,3 +219,10 @@ word.addWord('p')
 console.log( word.showWord() )
 
 ```
+
+
+个人觉得这个题目有更高级的解法 比如说根据增加的字母判断是否是一个合理的单词 并且输出单词的结果
+
+Google到一些思路 大家可以看看 然后教我阿 hhhhhh 2333～
+
+[我叫思路](https://github.com/lmk123/blog/issues/12)
