@@ -1,16 +1,3 @@
-### 数据结构与算法JavaScript描述
-
----
-
-### 第五章
-
----
-
-```bash
-
-# 节省篇幅　抽出Deueue类
-
-# Deueue
 function Deueue() {
   this.dataStore = []
   this.enqueue = enqueue
@@ -27,7 +14,6 @@ function enqueue(element) {
   this.dataStore.push(element)
 }
 
-# 新增加的
 function frontEnqueue(element) { 
   this.dataStore.unshift(element)
 }
@@ -36,7 +22,6 @@ function dequeue() {
   return this.dataStore.shift()
 }
 
-# 新增加的
 function backDequeue() {
   return this.dataStore.pop()
 }
@@ -64,47 +49,30 @@ function empty() {
       return false
   }
 }
-```
 
-第一题
+// ceshi
 
-１. 修改Queue　类　形成一个Dueue类　这是一个类似队列类似的数据结构　允许从队列两端添加和删除元素　因此也叫双向队列　写一段测试程序测试该类
+// 1
 
-``` bash
+//var q = new Deueue()
+//q.enqueue('one')
+//q.enqueue('two')
+//q.enqueue('three')
 
-
-# 测试代码
-
-var q = new Deueue()
-q.enqueue('one')
-q.enqueue('two')
-q.enqueue('three')
-
-q.frontEnqueue('four')
+//q.frontEnqueue('four')
 
 
-console.log(q.toString())
+//console.log(q.toString())
 
-q.dequeue()
+//q.dequeue()
 
-console.log(q.toString())
+//console.log(q.toString())
 
-q.backDequeue()
+//q.backDequeue()
 
-console.log(q.toString())
+//console.log(q.toString())
 
-
-```
-
---- 
-
-２. 第二题　使用Deque类来判断一个给定的单词是否为回文
-
-
-``` bash
-
-# 测试代码
-
+// 2
 
 function isPalindrmoe(word) {
   var words = new Deueue()
@@ -129,5 +97,3 @@ function isPalindrmoe(word) {
 
 isPalindrmoe('racecar')
 isPalindrmoe('hello')
-
-```
