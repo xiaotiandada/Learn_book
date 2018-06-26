@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .clearfix::after,
+        .clearfix::before {
+            display: table;
+            content: "";
+        }
+
+        .clearfix::after {
+            clear: both;
+            overflow: hidden;
+        }
+
+        .fl {
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+        }
+
+        .demo{
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo clearfix">
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+    </div>
+
+    <div class="demo clearfix">
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+        <div class="fl"></div>
+    </div>
+</body>
+
+</html>
